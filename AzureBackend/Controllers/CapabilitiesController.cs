@@ -33,6 +33,7 @@ public class CapabilitiesController : Controller
             new()
             {
                 Id = 0,
+                Name = "Prague",
                 Longitude = 50.073658,
                 Latitude = 14.418540,
                 DefaultZoom = 11
