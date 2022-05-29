@@ -1,4 +1,4 @@
-namespace Azure_Backend;
+namespace AzureBackend;
 
 public class WeatherForecast
 {

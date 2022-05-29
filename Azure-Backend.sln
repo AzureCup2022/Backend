@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure-Backend", "Azure-Backend\Azure-Backend.csproj", "{22060992-22E0-424F-9C77-67B96F2A70E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBackend", "AzureBackend\AzureBackend.csproj", "{22060992-22E0-424F-9C77-67B96F2A70E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
