@@ -27,7 +27,7 @@ public class CapabilitiesController : Controller
         {
             new()
             {
-                Id = 0,
+                Id = 1,
                 Name = "Prague",
                 Longitude = 50.073658,
                 Latitude = 14.418540,
@@ -35,7 +35,7 @@ public class CapabilitiesController : Controller
             },
             new()
             {
-                Id = 1,
+                Id = 2,
                 Name = "Paris",
                 Longitude = 48.864716,
                 Latitude = 2.349014,
@@ -44,17 +44,37 @@ public class CapabilitiesController : Controller
         });
     }
 
+    [HttpPost("[action]")]
+    public async Task<ActionResult> AddCity([FromBody] City city)
+    {
+        _context.Cities.Add(city);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete("[action]")]
+    public async Task<ActionResult> DeleteCity([FromQuery] int id)
+    {
+        var city = await _context.Cities.FindAsync(id);
+        if (city == null)
+        {
+            return NotFound();
+        }
+
+        _context.Cities.Remove(city);
+        await _context.SaveChangesAsync();
+        return Ok();
+    }
+
     /// <summary>
     /// Return a list of currently supported overlays for a given city.
     /// The list contains names of the overlays.
     /// </summary>
     [HttpGet("[action]")]
-    public async Task<ActionResult<IAsyncEnumerable<string>>> GetAvailableOverlays(int cityId)
+    public ActionResult<IEnumerable<string>> GetAvailableOverlays([FromQuery] int cityId)
     {
-        return Ok(new List<string>
-        {
-            "safety",
-            "pollution"
-        });
+        var ovrs = _context.Overlays.Where(x => x.CityId == cityId).Select(x => x.OverlayType).ToList();
+
+        return Ok(ovrs);
     }
 }
