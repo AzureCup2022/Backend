@@ -1,5 +1,6 @@
 using AzureBackend.Data;
 using AzureBackend.Data.Models;
+using AzureBackend.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AzureBackend.Controllers;
@@ -29,7 +30,17 @@ public class OverlayController : Controller
     [HttpGet("[action]")]
     public async Task<ActionResult<Overlay>> GetCityOverlay(int cityId, string overlayType)
     {
-        return Ok(new Overlay());
+        var overlay = overlayType switch
+        {
+            "safety" => MockParser.GetSafetyMock(),
+            "pollution" => MockParser.GetPollutionMock(),
+            _ => null
+        };
+
+        if (overlay?.Data == null) return NoContent();
+        
+        overlay.Data = overlay.Data.Take(10).ToList();
+        return Ok(overlay);
     }
     
     /// <summary>

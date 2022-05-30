@@ -37,6 +37,14 @@ public class CapabilitiesController : Controller
                 Longitude = 50.073658,
                 Latitude = 14.418540,
                 DefaultZoom = 11
+            },
+            new()
+            {
+                Id = 1,
+                Name = "Paris",
+                Longitude = 48.864716,
+                Latitude = 2.349014,
+                DefaultZoom = 10
             }
         });
     }
@@ -50,7 +58,7 @@ public class CapabilitiesController : Controller
     {
         return Ok(new List<string>
         {
-            "loudness",
+            "safety",
             "pollution"
         });
     }
