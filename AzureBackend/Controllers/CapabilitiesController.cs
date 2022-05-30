@@ -9,19 +9,14 @@ namespace AzureBackend.Controllers;
 public class CapabilitiesController : Controller
 {
     private readonly ILogger<CapabilitiesController> _logger;
-    private readonly DataContext _dataContext;
+    private readonly DatabaseContext _context;
 
-    public CapabilitiesController(ILogger<CapabilitiesController> logger)
+    public CapabilitiesController(ILogger<CapabilitiesController> logger, DatabaseContext context)
     {
         _logger = logger;
+        _context = context;
     }
-    
-    // public CapabilitiesController(ILogger<CapabilitiesController> logger, DataContext context)
-    // {
-    //     _logger = logger;
-    //     _dataContext = context;
-    // }
-    
+
     /// <summary>
     /// Return a list of current supported cities.
     /// </summary>

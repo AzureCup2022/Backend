@@ -5,16 +5,15 @@ namespace AzureBackend.Data;
 
 // TODO: Add to Program.cs when ready to init a DB.
 // TODO: Change the constructor of OverlayController and CapabilitiesController to the commented one.
-public class DataContext : DbContext
+public class DatabaseContext : DbContext
 {
     public DbSet<City> Cities { get; set; }
-    public DbSet<Overlay> Overlays{ get; set; }
-    public DbSet<OverlayDataElement> OverlayDataElements { get; set; }
+    public DbSet<Overlay> Overlays { get; set; }
 
     public string DbPath { get; } = ".";
 
 
-    public DataContext(DbContextOptions<DataContext> options) : base(options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
     {
     }
 
@@ -25,8 +24,6 @@ public class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Overlay>()
-            .HasMany(p => p.Data)
-            .WithOne();
+
     }
 }
