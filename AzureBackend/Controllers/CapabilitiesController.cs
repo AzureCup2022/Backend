@@ -23,25 +23,9 @@ public class CapabilitiesController : Controller
     [HttpGet("[action]")]
     public async Task<ActionResult<IAsyncEnumerable<City>>> GetAvailableCities()
     {
-        return Ok(new List<City>
-        {
-            new()
-            {
-                Id = 1,
-                Name = "Prague",
-                Longitude = 50.073658,
-                Latitude = 14.418540,
-                DefaultZoom = 11
-            },
-            new()
-            {
-                Id = 2,
-                Name = "Paris",
-                Longitude = 48.864716,
-                Latitude = 2.349014,
-                DefaultZoom = 10
-            }
-        });
+        var cities = _context.Cities.ToList();
+
+        return Ok(cities);
     }
 
     [HttpPost("[action]")]
